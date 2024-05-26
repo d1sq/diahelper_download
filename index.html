@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Latest APK</title>
+</head>
+<body>
+    <a id="download-link" href="#">Download Latest APK</a>
+    <script>
+        fetch('https://api.github.com/repos/Heyone77/InsulinTracker/releases/latest')
+            .then(response => response.json())
+            .then(data => {
+                const apkAsset = data.assets.find(asset => asset.name === 'DiaHelper.apk');
+                if (apkAsset) {
+                    document.getElementById('download-link').href = apkAsset.browser_download_url;
+                } else {
+                    document.getElementById('download-link').innerText = 'APK not found in the latest release';
+                }
+            });
+    </script>
+</body>
+</html>
