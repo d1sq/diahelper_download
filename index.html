@@ -10,6 +10,7 @@
     <div class="container text-center mt-5">
         <h1>DiaHelper</h1>
         <p class="lead">Здесь могла быть ваша реклама</p>
+	<p id="release-date" class="mt-3"></p>
         <a id="download-link" class="btn btn-primary btn-lg" href="#">Скачать последнюю версию</a>
     </div>
 
@@ -25,6 +26,10 @@
                 } else {
                     document.getElementById('download-link').innerText = 'APK not found in the latest release';
                 }
+
+                const releaseDate = new Date(data.published_at);
+                const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+                document.getElementById('release-date').innerText = 'Последнее обновление: ' + releaseDate.toLocaleDateString('ru-RU', options);
             });
     </script>
 </body>
